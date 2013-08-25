@@ -30,19 +30,21 @@
           <p>Use VerbalExpressions, as the name suggests, to express Regular Expressions in
 a more verbal way. Instead of a rather cryptic regular expressions like:</p>
 
-<pre><code>Regex.match?(%r/^te?.*s[^t]*$/, &quot;test&quot;) 
+<pre><code>iex&gt;Regex.match?(%r/^te?.*s.+$/, &quot;test&quot;)
+true
 </code></pre>
 
 <p>you can use VerbalExpressions to write:</p>
 
-<pre><code>startOfLine() 
-|&gt; then(&quot;t&quot;) 
-|&gt; maybe(&quot;e&quot;) 
-|&gt; anything() 
-|&gt; then(&quot;s&quot;) 
-|&gt; anythingBut(&quot;t&quot;)
-|&gt; endOfLine()
-|&gt; match?(&quot;test&quot;)
+<pre><code>iex&gt; VerbalExpressions.startOfLine() 
+iex&gt; |&gt; VerbalExpressions.then(&quot;t&quot;) 
+iex&gt; |&gt; VerbalExpressions.maybe(&quot;e&quot;) 
+iex&gt; |&gt; VerbalExpressions.anything() 
+iex&gt; |&gt; VerbalExpressions.then(&quot;s&quot;) 
+iex&gt; |&gt; VerbalExpressions.something()
+iex&gt; |&gt; VerbalExpressions.endOfLine()
+iex&gt; |&gt; VerbalExpressions.match?(&quot;test&quot;)
+true
 </code></pre>
 
         </div>
@@ -53,13 +55,16 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
       
 
       
-
-      
         <h2 id="functions_summary">Functions summary</h2>
         <ul class="summary">
           <li>
   <span class="summary_signature">
     <a href="#anything/0">anything/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#anything/1">anything/1</a>
   </span>
 </li>
 <li>
@@ -104,7 +109,17 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
 </li>
 <li>
   <span class="summary_signature">
+    <a href="#replace/3">replace/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
     <a href="#something/0">something/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#something/1">something/1</a>
   </span>
 </li>
 <li>
@@ -141,12 +156,23 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
       
 
       
+
+      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
   <p class="signature" id="anything/0">
     <strong>anything()</strong>
   </p>
+  
+  <div class="docstring"></div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="anything/1">
+    <strong>anything(before)</strong>
+  </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -154,6 +180,7 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
   <p class="signature" id="anythingBut/1">
     <strong>anythingBut(string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -161,6 +188,7 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
   <p class="signature" id="anythingBut/2">
     <strong>anythingBut(before, string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -168,13 +196,16 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
   <p class="signature" id="endOfLine/0">
     <strong>endOfLine()</strong>
   </p>
-  <div class="docstring"></div>
+  
+  <div class="docstring"><p>Express the end of a line regex anchor. This translates to &#39;$&#39;.</p>
+</div>
   
 </div>
 <div class="detail">
   <p class="signature" id="endOfLine/1">
     <strong>endOfLine(before)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -182,8 +213,9 @@ a more verbal way. Instead of a rather cryptic regular expressions like:</p>
   <p class="signature" id="find/1">
     <strong>find(string)</strong>
   </p>
-  <div class="docstring"><p>This is defined for API compatibility with the Javascript version. The Elixir
-matching can be started with then/1, as well.</p>
+  
+  <div class="docstring"><p>Defined for API compatibility with the Javascript version. The Elixir matching
+can be started with then/1, as well.</p>
 </div>
   
 </div>
@@ -191,7 +223,8 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="match?/2">
     <strong>match?(regex, string)</strong>
   </p>
-  <div class="docstring"><p>This function matches a given string with a given regex string.</p>
+  
+  <div class="docstring"><p>Match a given string with a given regex string.</p>
 </div>
   
 </div>
@@ -199,6 +232,7 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="maybe/1">
     <strong>maybe(string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -206,13 +240,39 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="maybe/2">
     <strong>maybe(before, string)</strong>
   </p>
+  
   <div class="docstring"></div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="replace/3">
+    <strong>replace(regex, string, replacement)</strong>
+  </p>
+  
+  <div class="docstring"><p>Replace the occurences of regex in the given string with the given replacement
+text.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.find(&quot;x&quot;) |&gt; VE.replace(&quot;xyz&quot;, &quot;&quot;)
+&quot;yz&quot;
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
   <p class="signature" id="something/0">
     <strong>something()</strong>
   </p>
+  
+  <div class="docstring"></div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="something/1">
+    <strong>something(before)</strong>
+  </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -220,6 +280,7 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="somethingBut/1">
     <strong>somethingBut(string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -227,6 +288,7 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="somethingBut/2">
     <strong>somethingBut(before, string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
@@ -234,19 +296,25 @@ matching can be started with then/1, as well.</p>
   <p class="signature" id="startOfLine/0">
     <strong>startOfLine()</strong>
   </p>
-  <div class="docstring"></div>
+  
+  <div class="docstring"><p>Express the start of a line regex anchor. This translates to &#39;^&#39;.</p>
+</div>
   
 </div>
 <div class="detail">
   <p class="signature" id="then/1">
     <strong>then(string)</strong>
   </p>
-  <div class="docstring"><p>This function creates a regex string that will match the given string.</p>
+  
+  <div class="docstring"><p>Express an exact string match.</p>
 
 <h2>Examples</h2>
 
 <pre><code>iex&gt; VE.then(&quot;x&quot;) |&gt; VE.match?(&quot;x&quot;)
 true
+
+iex&gt; VE.then(&quot;hello&quot;) |&gt; VE.match?(&quot;holla&quot;)
+false
 </code></pre>
 </div>
   
@@ -255,6 +323,7 @@ true
   <p class="signature" id="then/2">
     <strong>then(before, string)</strong>
   </p>
+  
   <div class="docstring"></div>
   
 </div>
