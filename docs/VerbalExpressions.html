@@ -165,7 +165,20 @@ true
     <strong>anything()</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Match any number of any characters. Translates to &#39;.*&#39;.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.anything() |&gt; VE.then(&quot;hours&quot;) |&gt; VE.match?(&quot;12 hours&quot;)
+true
+
+iex&gt; VE.anything() |&gt; VE.then(&quot;hours&quot;) |&gt; VE.match?(&quot;24 hours&quot;)
+true
+
+iex&gt; VE.anything() |&gt; VE.then(&quot;hours&quot;) |&gt; VE.match?(&quot;10 minutes&quot;)
+false
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
@@ -173,7 +186,8 @@ true
     <strong>anything(before)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of anything/0</p>
+</div>
   
 </div>
 <div class="detail">
@@ -181,7 +195,17 @@ true
     <strong>anythingBut(string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Match anything but the given string. Translates to &quot;[^string]*&quot;.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.anythingBut(&quot;www.google.com&quot;) |&gt; VE.match?(&quot;www.elixir-lang.org&quot;)
+true
+
+iex&gt; VE.find(&quot;W&quot;) |&gt; VE.anythingBut(&quot;O&quot;) |&gt; VE.then(&quot;W&quot;) |&gt; VE.match?(&quot;WOW&quot;)
+false
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
@@ -189,7 +213,8 @@ true
     <strong>anythingBut(before, string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of anythingBut/1</p>
+</div>
   
 </div>
 <div class="detail">
@@ -206,7 +231,8 @@ true
     <strong>endOfLine(before)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of endOfLine/0.</p>
+</div>
   
 </div>
 <div class="detail">
@@ -214,8 +240,8 @@ true
     <strong>find(string)</strong>
   </p>
   
-  <div class="docstring"><p>Defined for API compatibility with the Javascript version. The Elixir matching
-can be started with then/1, as well.</p>
+  <div class="docstring"><p>See then/1. Defined for API compatibility with the Javascript version. The
+Elixir matching can be started with then/1, as well.  </p>
 </div>
   
 </div>
@@ -225,6 +251,12 @@ can be started with then/1, as well.</p>
   </p>
   
   <div class="docstring"><p>Match a given string with a given regex string.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.find(&quot;@&quot;) |&gt; VE.match?(&quot;some@email.com&quot;)
+true
+</code></pre>
 </div>
   
 </div>
@@ -233,7 +265,14 @@ can be started with then/1, as well.</p>
     <strong>maybe(string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Express an optional string match. This translates to (string)?.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.find(&quot;12&quot;) |&gt; VE.maybe(&quot;h&quot;) |&gt; VE.maybe(&quot;m&quot;) |&gt; VE.match?(&quot;12h&quot;)
+true
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
@@ -241,7 +280,8 @@ can be started with then/1, as well.</p>
     <strong>maybe(before, string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of maybe/1</p>
+</div>
   
 </div>
 <div class="detail">
@@ -265,7 +305,17 @@ text.</p>
     <strong>something()</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Match any string but the empty one. Translates to &quot;.+&quot;.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.something() |&gt; VE.match?(&quot;&quot;)
+false
+
+iex&gt; VE.something() |&gt; VE.match?(&quot;foo&quot;)
+true
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
@@ -273,7 +323,8 @@ text.</p>
     <strong>something(before)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of something/0</p>
+</div>
   
 </div>
 <div class="detail">
@@ -281,7 +332,18 @@ text.</p>
     <strong>somethingBut(string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Match anything except the given string and the empty string. Translates to
+&quot;[^string]+&quot;.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.somethingBut(&quot;www.&quot;) |&gt; VE.match?(&quot;ftp.google.com&quot;)
+true
+
+iex&gt; VE.startOfLine() |&gt; VE.somethingBut(&quot;www.&quot;) |&gt; VE.match?(&quot;www.google.com&quot;)
+false
+</code></pre>
+</div>
   
 </div>
 <div class="detail">
@@ -289,7 +351,8 @@ text.</p>
     <strong>somethingBut(before, string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of somethingBut/1</p>
+</div>
   
 </div>
 <div class="detail">
@@ -324,7 +387,8 @@ false
     <strong>then(before, string)</strong>
   </p>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>Concatenation version of then/1</p>
+</div>
   
 </div>
 
