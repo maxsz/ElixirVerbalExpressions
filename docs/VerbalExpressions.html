@@ -59,7 +59,12 @@ true
         <ul class="summary">
           <li>
   <span class="summary_signature">
-    <a href="#anything/0">anything/0</a>
+    <a href="#any/2">any/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#anyOf/2">anyOf/2</a>
   </span>
 </li>
 <li>
@@ -69,17 +74,12 @@ true
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#anythingBut/1">anythingBut/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
     <a href="#anythingBut/2">anythingBut/2</a>
   </span>
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#endOfLine/0">endOfLine/0</a>
+    <a href="#br/1">br/1</a>
   </span>
 </li>
 <li>
@@ -89,7 +89,12 @@ true
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#find/1">find/1</a>
+    <a href="#find/2">find/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#lineBreak/1">lineBreak/1</a>
   </span>
 </li>
 <li>
@@ -99,12 +104,12 @@ true
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#maybe/1">maybe/1</a>
+    <a href="#maybe/2">maybe/2</a>
   </span>
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#maybe/2">maybe/2</a>
+    <a href="#range/2">range/2</a>
   </span>
 </li>
 <li>
@@ -114,17 +119,7 @@ true
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#something/0">something/0</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
     <a href="#something/1">something/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#somethingBut/1">somethingBut/1</a>
   </span>
 </li>
 <li>
@@ -139,12 +134,17 @@ true
 </li>
 <li>
   <span class="summary_signature">
-    <a href="#then/1">then/1</a>
+    <a href="#tab/1">tab/1</a>
   </span>
 </li>
 <li>
   <span class="summary_signature">
     <a href="#then/2">then/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#word/1">word/1</a>
   </span>
 </li>
 
@@ -161,8 +161,35 @@ true
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="anything/0">
-    <strong>anything()</strong>
+  <p class="signature" id="any/2">
+    <strong>any(before // &quot;&quot;, string)</strong>
+  </p>
+  
+  <div class="docstring"><p>Alias for anyOf/2</p>
+</div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="anyOf/2">
+    <strong>anyOf(before // &quot;&quot;, string)</strong>
+  </p>
+  
+  <div class="docstring"><p>Match any character in the given string.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.anyOf(&quot;abcd&quot;) |&gt; VE.match?(&quot;e&quot;)
+false
+
+iex&gt; VE.anyOf(&quot;abcd&quot;) |&gt; VE.match?(&quot;a&quot;)
+true
+</code></pre>
+</div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="anything/1">
+    <strong>anything(before // &quot;&quot;)</strong>
   </p>
   
   <div class="docstring"><p>Match any number of any characters. Translates to &#39;.*&#39;.</p>
@@ -182,17 +209,8 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="anything/1">
-    <strong>anything(before)</strong>
-  </p>
-  
-  <div class="docstring"><p>Concatenation version of anything/0</p>
-</div>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="anythingBut/1">
-    <strong>anythingBut(string)</strong>
+  <p class="signature" id="anythingBut/2">
+    <strong>anythingBut(before // &quot;&quot;, string)</strong>
   </p>
   
   <div class="docstring"><p>Match anything but the given string. Translates to &quot;[^string]*&quot;.</p>
@@ -209,17 +227,17 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="anythingBut/2">
-    <strong>anythingBut(before, string)</strong>
+  <p class="signature" id="br/1">
+    <strong>br(before // &quot;&quot;)</strong>
   </p>
   
-  <div class="docstring"><p>Concatenation version of anythingBut/1</p>
+  <div class="docstring"><p>Alias for linebreak/1</p>
 </div>
   
 </div>
 <div class="detail">
-  <p class="signature" id="endOfLine/0">
-    <strong>endOfLine()</strong>
+  <p class="signature" id="endOfLine/1">
+    <strong>endOfLine(before // &quot;&quot;)</strong>
   </p>
   
   <div class="docstring"><p>Express the end of a line regex anchor. This translates to &#39;$&#39;.</p>
@@ -227,21 +245,30 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="endOfLine/1">
-    <strong>endOfLine(before)</strong>
-  </p>
-  
-  <div class="docstring"><p>Concatenation version of endOfLine/0.</p>
-</div>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="find/1">
-    <strong>find(string)</strong>
+  <p class="signature" id="find/2">
+    <strong>find(before // &quot;&quot;, string)</strong>
   </p>
   
   <div class="docstring"><p>See then/1. Defined for API compatibility with the Javascript version. The
 Elixir matching can be started with then/1, as well.  </p>
+</div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="lineBreak/1">
+    <strong>lineBreak(before // &quot;&quot;)</strong>
+  </p>
+  
+  <div class="docstring"><p>Matches any line break.</p>
+
+<h2>Examples</h2>
+
+<pre><code>iex&gt; VE.lineBreak() |&gt; VE.match?(&quot;Hi&quot;)
+false
+
+iex&gt; VE.find(&quot;Hi&quot;) |&gt; VE.lineBreak() |&gt; VE.match?(&quot;Hi\n&quot;)
+true
+</code></pre>
 </div>
   
 </div>
@@ -261,8 +288,8 @@ true
   
 </div>
 <div class="detail">
-  <p class="signature" id="maybe/1">
-    <strong>maybe(string)</strong>
+  <p class="signature" id="maybe/2">
+    <strong>maybe(before // &quot;&quot;, string)</strong>
   </p>
   
   <div class="docstring"><p>Express an optional string match. This translates to (string)?.</p>
@@ -276,12 +303,11 @@ true
   
 </div>
 <div class="detail">
-  <p class="signature" id="maybe/2">
-    <strong>maybe(before, string)</strong>
+  <p class="signature" id="range/2">
+    <strong>range(_before // &quot;&quot;, _string)</strong>
   </p>
   
-  <div class="docstring"><p>Concatenation version of maybe/1</p>
-</div>
+  <div class="docstring"></div>
   
 </div>
 <div class="detail">
@@ -301,8 +327,8 @@ text.</p>
   
 </div>
 <div class="detail">
-  <p class="signature" id="something/0">
-    <strong>something()</strong>
+  <p class="signature" id="something/1">
+    <strong>something(before // &quot;&quot;)</strong>
   </p>
   
   <div class="docstring"><p>Match any string but the empty one. Translates to &quot;.+&quot;.</p>
@@ -319,17 +345,8 @@ true
   
 </div>
 <div class="detail">
-  <p class="signature" id="something/1">
-    <strong>something(before)</strong>
-  </p>
-  
-  <div class="docstring"><p>Concatenation version of something/0</p>
-</div>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="somethingBut/1">
-    <strong>somethingBut(string)</strong>
+  <p class="signature" id="somethingBut/2">
+    <strong>somethingBut(before // &quot;&quot;, string)</strong>
   </p>
   
   <div class="docstring"><p>Match anything except the given string and the empty string. Translates to
@@ -347,15 +364,6 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="somethingBut/2">
-    <strong>somethingBut(before, string)</strong>
-  </p>
-  
-  <div class="docstring"><p>Concatenation version of somethingBut/1</p>
-</div>
-  
-</div>
-<div class="detail">
   <p class="signature" id="startOfLine/0">
     <strong>startOfLine()</strong>
   </p>
@@ -365,8 +373,17 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="then/1">
-    <strong>then(string)</strong>
+  <p class="signature" id="tab/1">
+    <strong>tab(before // &quot;&quot;)</strong>
+  </p>
+  
+  <div class="docstring"><p>Match the <tab> character.</p>
+</div>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="then/2">
+    <strong>then(before // &quot;&quot;, string)</strong>
   </p>
   
   <div class="docstring"><p>Express an exact string match.</p>
@@ -383,11 +400,11 @@ false
   
 </div>
 <div class="detail">
-  <p class="signature" id="then/2">
-    <strong>then(before, string)</strong>
+  <p class="signature" id="word/1">
+    <strong>word(before // &quot;&quot;)</strong>
   </p>
   
-  <div class="docstring"><p>Concatenation version of then/1</p>
+  <div class="docstring"><p>Match at least one word</p>
 </div>
   
 </div>
